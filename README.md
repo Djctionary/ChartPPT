@@ -6,7 +6,7 @@
 🎥 **Watch the introduction video:** [Link to introduction video](https://youtu.be/b8QPHhMOgb0)  
 📸 **Example Images:**  
 
-![屏幕截图 2024-11-30 225020](https://github.com/user-attachments/assets/7d962d86-2019-4a46-be1c-2d175798147d)
+![屏幕截图 2024-11-30 230751](https://github.com/user-attachments/assets/9580f4be-8bbf-435b-8c7a-34c815e87f66)
 
 ![Picture3](https://github.com/user-attachments/assets/19a26c73-754f-4d46-807a-55555d3e3f00)
 
@@ -20,7 +20,7 @@
 2. **📂 Upload Your Flowchart:** Upload images in **'png'**, **'jpg'**, or **'jpeg'** formats.  
 3. **⚙️ Adjust Parameters:** Fine-tune settings using our intuitive interface or stick with our smart, pre-recommended defaults.
 
-![屏幕截图 2024-11-30 224729](https://github.com/user-attachments/assets/f8ace0f3-d08d-44ba-b34e-a932196f7d8a)
+![屏幕截图 2024-11-30 230759](https://github.com/user-attachments/assets/b53368e6-3b06-49b1-a673-3c7959f98932)
 
 4. **🚀 Convert:** Click **Convert** and let the system work its magic in just 10–30 seconds.  
 5. **📥 Download Your PPT:** Download a fully editable PowerPoint file with a **WYSIWYG** (What You See Is What You Get) experience.  

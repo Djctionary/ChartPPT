@@ -1,0 +1,427 @@
+/* 原UI */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* 隐藏滚动条 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    color: rgb(64, 64, 64); /* 深灰色字体 */
+    z-index: 1;
+    position: relative;
+}
+
+/* 背景样式：六个色块依次排列，均分屏幕宽度 */
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* 背景位于其他元素之下 */
+    display: flex;
+}
+
+.background div {
+    flex: 1;
+    height: 100%;
+}
+
+.background .block1 { background-color: rgb(23, 116, 209); }
+.background .block2 { background-color: rgb(211, 81, 47); }
+.background .block3 { background-color: rgb(217, 217, 217); }
+.background .block4 { background-color: rgb(23, 116, 209); }
+.background .block5 { background-color: rgb(211, 81, 47); }
+.background .block6 { background-color: rgb(217, 217, 217); }
+
+/* 头部文字居中，深灰色字 */
+.header {
+    padding: 0px;
+    width: 100%;
+    text-align: center;
+    margin-top: -30px;
+    font-size: 32px;
+    color: rgb(64, 64, 64); /* 深灰色字体 */
+}
+
+/* 容器居中，圆角和阴影效果，浅灰色 */
+.container {
+    text-align: center;
+    background-color: rgb(217, 217, 217); /* 浅灰色背景 */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(64, 64, 64, 0.1);
+    width: 800px;
+    height: 530px;
+    margin: 0 auto;
+    z-index: 0;
+}
+
+/* 卡片虚线边框，居中内容 */
+.card {
+    padding: 12px;
+    height: 280px;
+    background-color: transparent;
+    border: 10px dashed rgb(25, 61, 103); /* 虚线边框颜色 */
+    border-radius: 10px;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+/* 当按钮被点击时，卡片的边框变为RGB(152, 55, 32) */
+.card.clicked {
+    border-color: rgb(152, 55, 32); /* 点击时变为RGB(152, 55, 32) */
+}
+
+/* 卡片内的文字样式 */
+.card__text {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+    color: rgb(64, 64, 64); /* 深灰色字体 */
+    font-size: 12px;
+}
+
+/* 画布样式：边框为灰色 */
+canvas {
+    display: block;
+    margin: 20px auto;
+    border: 1px solid rgb(127, 127, 127); /* 灰色边框 */
+    border-radius: 8px;
+    width: 300px;
+    height: 300px;
+}
+
+/* 箭头和线条的样式 */
+.line-arrow {
+    display: flex;
+    align-items: center;
+    gap: 0px;
+}
+
+.line {
+    width: 50px;
+    height: 20px;
+    background-color: rgb(64, 64, 64); /* 深灰色线条 */
+}
+
+.arrow {
+    width: 0;
+    height: 0;
+    border-top: 30px solid transparent;
+    border-bottom: 30px solid transparent;
+    border-left: 30px solid rgb(64, 64, 64); /* 深灰色箭头 */
+}
+
+input[type="file"] {
+    display: none; /* Hide the default file input */
+}
+
+/* 上传按钮：颜色为RGB(23, 116, 209)，点击后变为RGB(152, 55, 32) */
+.custom-file-upload {
+    display: inline-block;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 5px;
+    height: 50px;
+    width: 200px;
+    line-height: 47px;
+    text-align: center;
+    color: #fff;
+    background-color: rgb(23, 116, 209); /* 默认蓝色 */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* 鼠标悬停时，按钮颜色加深为RGB(25, 61, 103) */
+.custom-file-upload:hover {
+    background-color: rgb(25, 61, 103); /* 鼠标悬停时颜色 */
+}
+
+/* 按钮被点击后，颜色变为RGB(152, 55, 32) */
+.custom-file-upload.clicked {
+    background-color: rgb(152, 55, 32); /* 点击时颜色 */
+}
+
+/* 下载按钮样式：正常为RGB(23, 116, 209)，悬停和点击同上 */
+#download {
+    padding: 10px 20px;
+    background-color: rgb(23, 116, 209); /* 蓝色 */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#download:hover {
+    background-color: rgb(25, 61, 103); /* 鼠标悬停时颜色 */
+}
+
+#download.clicked {
+    background-color: rgb(152, 55, 32); /* 点击时颜色 */
+}
+
+/* 转换按钮样式 */
+.convert-button::before {
+  content: '';
+  position: absolute;
+  top: 80%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: grey;
+}
+
+.convert-button {
+    display: block;
+    margin: 10px auto;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    height: 50px;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 11px 14px;
+    border: none;
+    border-radius: 16px;
+    background-color: #3399FF;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.convert-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(119, 171, 91, 0.5);
+}
+
+.convert-button.disabled:focus {
+    box-shadow: 0 0 0 3px rgba(200, 220, 190, 0.5);
+}
+
+#convert-button:hover {
+    background-color: #0066CC;
+}
+
+/* 图像画布的样式 */
+#imageCanvas {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.card__body
+{
+    width: 780px;
+    height: 280px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+
+.tutorial-button, .reset-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+
+.tutorial-button {
+    background-color: #3399FF;
+    color: white;
+}
+
+.reset-button {
+    background-color: #f44336;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.convert-button:hover, .tutorial-button:hover, .reset-button:hover {
+    opacity: 0.8;
+}
+
+.drawer {
+    position: fixed;
+    bottom: -100%;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    transition: bottom 0.5s ease-out;
+    z-index: 1000;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+.drawer-content {
+    max-height: 40vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 5px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.parameters {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.parameter-section {
+    flex-basis: 48%;
+    overflow: visible;
+}
+
+.parameter {
+    margin-bottom: 15px;
+}
+
+.parameter label {
+    white-space: nowrap; /* 确保标签文本不换行 */
+}
+
+.parameter input[type="range"] {
+    width: 100%;
+}
+
+.parameter input[type="checkbox"] {
+    transform: scale(1.5);
+    margin-left: 50px;
+}
+
+.parameter select {
+    width: 100%;
+    padding: 5px;
+    border-radius: 3px;
+    border: 1px solid #ddd;
+}
+
+.action-buttons {
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+}
+
+.action-buttons:hover {
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+}
+
+@media (max-width: 768px) {
+    .parameter-section {
+        flex-basis: 100%;
+    }
+}
+
+.vertical-divider {
+    width: 2px;
+    background-color: #ddd;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    height: calc(80.5%);
+}
+
+/* 参数项悬浮时的动画 */
+.parameter {
+    transition: font-weight 0.3s ease, transform 0.3s ease;
+}
+
+.parameter.hovered {
+    transform: scale(1.01);
+}
+
+/* 工具提示框样式 */
+/* 工具提示框样式（气泡形状） */
+.tooltip {
+    position: absolute;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 15px; /* 增加内边距使其更像气泡 */
+    border-radius: 15px; /* 圆角增加为气泡形状 */
+    font-size: 14px; /* 增大字体，使其更易读 */
+    line-height: 1.5; /* 增加行高，提高可读性 */
+    z-index: 1000;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    transform: translateY(-10px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 添加阴影效果，增强立体感 */
+}
+
+/* 工具提示框可见状态 */
+.tooltip.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 添加小三角形，使其看起来更像气泡 */
+.tooltip::after {
+    content: '';
+    position: absolute;
+    bottom: -10px; /* 调整三角形的位置，使其在提示框下方 */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #333; /* 三角形颜色与提示框背景一致 */
+}

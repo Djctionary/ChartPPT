@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChartPPT</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ url_for('static', filename='js/chartPPT.js') }}"></script>
+    <link id="theme-style" rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/chartPPT-Vibrant.css') }}">
+</head>
+<body>
+    <div class="background">
+        <div class="twinkling"></div>
+    </div>
+    <div class="header">
+        <h1>Welcome to ChartPPT!</h1>
+    </div>
+    <main>
+        <div class="container">
+            <h2>Upload and Convert Your Image</h2>
+
+            <div class="action-buttons">
+                <button class="tutorial-button" id="tutorial-button">How to Use?</button>
+            </div>
+
+            <div class="upload-section">
+                <div class="card">
+                    <div class="card__body">
+                        <label for="upload" class="custom-file-upload" id="select-label">
+                            Select Image
+                        </label>
+                        <input type="file" name="file" id="upload" accept="image/*">
+                        <canvas id="imageCanvas" style="display: none;"></canvas>
+                    </div>
+                </div>
+
+                <img id="image" style="display: none; max-width: 100%; height: auto; margin-top: 20px;">
+            </div>
+
+        </div>
+    </main>
+
+    <div id="drawer" class="drawer">
+        <div class="drawer-content">
+            <h3>Adjust Parameters</h3>
+            <div class="parameters">
+                <div class="parameter-section">
+                    <h4>OCR Parameters</h4>
+                    <div class="parameter" title="Adjust the horizontal merging threshold.">
+                        <label for="horizontal-threshold">Horizontal Threshold Scale:</label>
+                        <input type="range" id="horizontal-threshold" min="50" max="150" value="100">
+                        <span id="horizontal-threshold-value">100%</span>
+                    </div>
+                    <div class="parameter" title="Adjust the vertical merging threshold.">
+                        <label for="vertical-threshold">Vertical Threshold Scale:</label>
+                        <input type="range" id="vertical-threshold" min="50" max="150" value="100">
+                        <span id="vertical-threshold-value">100%</span>
+                    </div>
+                    <div class="parameter" title="Toggle to remove overlapping elements in the image.">
+                        <label for="remove-overlap">Remove Overlapping Elements:</label>
+                        <input type="checkbox" id="remove-overlap" checked>
+                    </div>
+                    <div class="parameter" title="Using GPT to Identify Text Box Shapes in the Original Image">
+                        <label for="recognize-shape">Recognize Original Shape:</label>
+                        <input type="checkbox" id="recognize-shape">
+                    </div>
+                </div>
+
+                <div class="vertical-divider" id="vertical-divider"></div>
+
+                <div class="parameter-section">
+                    <h4>PPT Parameters</h4>
+                    <div class="parameter" title="Enhance the saturation of the shape.">
+                        <label for="enhance-saturation">Enhance Saturation Scale:</label>
+                        <input type="range" id="enhance-saturation" min="50" max="150" value="100">
+                        <span id="enhance-saturation-value">100%</span>
+                    </div>
+                    <div class="parameter" title="Enhance the brightness of the shape.">
+                        <label for="enhance-brightness">Enhance brightness Scale:</label>
+                        <input type="range" id="enhance-brightness" min="50" max="150" value="100">
+                        <span id="enhance-brightness-value">100%</span>
+                    </div>
+                    <div class="parameter" title="Adjust the size ratio of shapes in the PPT.">
+                        <label for="shape-size">Shape Size Ratio:</label>
+                        <input type="range" id="shape-size" min="50" max="150" value="100">
+                        <span id="shape-size-value">100%</span>
+                    </div>
+                    <div class="parameter" title="Toggle to add lines between shapes in the PPT.">
+                        <label for="add-lines">Add Lines Between Shapes:</label>
+                        <input type="checkbox" id="add-lines">
+                    </div>
+                    <div class="parameter" title="Select the style of lines between shapes.">
+                        <label for="line-style">Line Style:</label>
+                        <select id="line-style">
+                            <option value="curve">Curve</option>
+                            <option value="straight">Straight</option>
+                            <option value="elbow">Elbow</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <button class="reset-button" id="reset-button">Reset Parameters</button>
+        </div>
+        <button class="convert-button" id="convert-button">Convert Image</button>
+    </div>
+
+    <div id="tutorial-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>How to Use ChartPPT</h3>
+            <ol>
+                <li>Click on "Select Image" to upload your chart image.</li>
+                <li>Adjust parameters in the drawer that appears.</li>
+                <li>Click "Convert Image" to process your image.</li>
+                <li>Download the resulting PPT file.</li>
+            </ol>
+            <p>For best results, ensure your image is clear and the chart is the main focus.</p>
+        </div>
+    </div>
+</body>
+</html>

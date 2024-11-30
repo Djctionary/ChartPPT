@@ -1,0 +1,409 @@
+/* 黑色背景霓虹效果 */
+body {
+    font-family: 'Courier New', monospace; /* 等宽 */
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: black; /* 黑色背景 */
+    color: white; /* 白色字体 */
+    z-index: 1;
+    position: relative;
+}
+
+.header {
+    padding: 0px;
+    width: 100%;
+    text-align: center;
+    margin-top: -30px;
+    font-size: 32px;
+}
+
+/* 容器黑色背景带有霓虹光晕边框 */
+.container {
+    text-align: center;
+    background-color: black;
+    padding: 20px;
+    border-radius: 10px; /* 圆角边框 */
+    box-shadow: 0px 0px 15px rgba(255, 0, 255, 0.7); /* 霓虹紫色光晕 */
+    width: 800px;
+    height: 500px;
+    margin: 0 auto;
+}
+
+input[type="file"] {
+    display: none; /* Hide the default file input */
+}
+
+/* 按钮带有光辉 */
+.custom-file-upload {
+    display: inline-block;
+    text-transform: uppercase; /* 大写字母 */
+    font-weight: bold;
+    letter-spacing: 5px; /* 字母间距 */
+    height: 50px;
+    width: 200px;
+    line-height: 50px;
+    text-align: center;
+    color: black;
+    background-color: cyan; /* 霓虹青色背景 */
+    border: none;
+    border-radius: 8px; /* 圆角按钮 */
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s; /* 背景色和阴影变化 */
+}
+
+.custom-file-upload:hover {
+    background-color: magenta; /* 悬停时变为霓虹粉色 */
+    box-shadow: 0 0 10px magenta, 0 0 40px cyan; /* 发光 */
+}
+
+/* 虚线框，带光辉霓虹风实线 */
+.card {
+    padding: 12px;
+    width: 780px;
+    height: 280px;
+    background-color: transparent;
+    border: 2px solid cyan; /* 青色边框 */
+    border-radius: 12px; /* 圆角 */
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-shadow: 0 0 15px cyan; /* 霓虹发光 */
+}
+
+/* 卡片内白色字体 */
+.card__text {
+    color: white; /* 霓虹风格使用白色字体 */
+    font-size: 16px;
+}
+
+/* 画布 */
+canvas {
+    display: block;
+    margin: 20px auto;
+    border: 1px solid cyan; /* 青色边框 */
+    border-radius: 12px; /* 圆角 */
+    width: 300px;
+    height: 300px;
+    box-shadow: 0 0 10px cyan; /* 发光 */
+}
+
+/* 下载按钮带光辉 */
+#download {
+    padding: 10px 20px;
+    background-color: cyan; /* 青色背景 */
+    color: black;
+    border: none;
+    border-radius: 8px; /* 圆角按钮 */
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+#download:hover {
+    background-color: magenta; /* 悬停为粉色 */
+    box-shadow: 0 0 10px magenta, 0 0 40px cyan; /* 发光 */
+}
+
+.convert-button::before {
+  content: '';
+  position: absolute;
+  top: 80%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: grey;
+}
+
+/* 转换按钮 */
+/* 霓虹青色按钮基本样式 */
+.convert-button {
+    display: block;
+    margin: 10px auto;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    height: 50px;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 11px 14px;
+    border: none;
+    border-radius: 8px;
+    background-color: cyan; /* 霓虹青色背景 */
+    color: black;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s, transform 0.2s;
+}
+
+/* 启用状态样式 */
+.convert-button.enabled {
+    background-color: cyan;
+    color: black;
+}
+
+.convert-button.enabled:hover {
+    background-color: magenta; /* 稍深的青色 */
+    box-shadow: 0 0 10px cyan; /* 霓虹光效果 */
+    transform: scale(1.05);
+}
+
+.convert-button.enabled:active {
+    background-color: #00b3b3; /* 更深的青色 */
+    box-shadow: 0 0 5px cyan;
+    transform: scale(0.95);
+}
+
+/* 禁用状态样式 */
+.convert-button.disabled {
+    background-color: #b3ffff; /* 更浅的青色 */
+    color: #4d4d4d;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* 确保禁用状态下不会有悬停效果 */
+.convert-button.disabled:hover,
+.convert-button.disabled:active {
+    background-color: #b3ffff;
+    color: #4d4d4d;
+    transform: none;
+    box-shadow: none;
+}
+
+/* 焦点状态样式，提高可访问性 */
+.convert-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 255, 255, 0.5);
+}
+
+/* 确保禁用状态下的焦点样式不那么突出 */
+.convert-button.disabled:focus {
+    box-shadow: 0 0 0 3px rgba(179, 255, 255, 0.5);
+}
+
+
+/* 图像画布的样式 */
+#imageCanvas {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border: 1px solid cyan; /* 青色边框 */
+    border-radius: 12px; /* 圆角 */
+    box-shadow: 0 0 10px cyan; /* 发光 */
+}
+
+.card__body
+{
+    height: 280px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+
+.tutorial-button, .reset-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+
+.tutorial-button {
+    background-color: #00CCCC;
+    color: black;
+}
+
+.reset-button {
+    background-color: #f44336;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.convert-button:hover, .tutorial-button:hover, .reset-button:hover {
+    opacity: 0.8;
+}
+
+.drawer {
+    position: fixed;
+    bottom: -100%;
+    left: 0;
+    width: 100%;
+    background-color: #000;  /* 背景颜色设为黑色 */
+    color: rgba(255, 0, 255, 1);
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    transition: bottom 0.5s ease-out;
+    z-index: 1000;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+.drawer-content {
+    max-height: 40vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    color: rgba(255, 0, 255, 0.7);  /* 字体颜色设为rgba(255, 0, 255, 0.7) */
+}
+
+
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 5px;
+    color: black;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.parameters {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.parameter-section {
+    flex-basis: 48%;
+    overflow: visible;
+}
+
+.parameter {
+    margin-bottom: 15px;
+}
+
+.parameter label {
+    white-space: nowrap; /* 确保标签文本不换行 */
+}
+
+.parameter input[type="range"] {
+    width: 100%;
+}
+
+.parameter input[type="checkbox"] {
+    transform: scale(1.5);
+    margin-left: 50px;
+}
+
+.parameter select {
+    width: 100%;
+    padding: 5px;
+    border-radius: 3px;
+    border: 1px solid #ddd;
+}
+
+.action-buttons {
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+}
+
+.action-buttons:hover {
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+}
+
+@media (max-width: 768px) {
+    .parameter-section {
+        flex-basis: 100%;
+    }
+}
+
+.vertical-divider {
+    width: 2px;
+    background-color: #ddd;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    height: calc(80.5%);
+}
+
+/* 参数项悬浮时的动画 */
+.parameter {
+    transition: font-weight 0.3s ease, transform 0.3s ease;
+}
+
+.parameter.hovered {
+    transform: scale(1.01);
+}
+
+/* 工具提示框样式 */
+/* 工具提示框样式（气泡形状） */
+.tooltip {
+    position: absolute;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 15px; /* 增加内边距使其更像气泡 */
+    border-radius: 15px; /* 圆角增加为气泡形状 */
+    font-size: 14px; /* 增大字体，使其更易读 */
+    line-height: 1.5; /* 增加行高，提高可读性 */
+    z-index: 1000;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    transform: translateY(-10px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 添加阴影效果，增强立体感 */
+}
+
+/* 工具提示框可见状态 */
+.tooltip.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 添加小三角形，使其看起来更像气泡 */
+.tooltip::after {
+    content: '';
+    position: absolute;
+    bottom: -10px; /* 调整三角形的位置，使其在提示框下方 */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #333; /* 三角形颜色与提示框背景一致 */
+}

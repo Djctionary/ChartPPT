@@ -1,0 +1,404 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #121212;
+    color: #7F00FF;
+    height: 100vh;
+}
+
+.header {
+    padding: 0px;
+    width: 100%;
+    text-align: center;
+    margin-top: -30px;
+    font-size: 32px;
+}
+
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    background: url(../img/stars-background.jpg) no-repeat center center;
+    background-size: 100% 100%; /* 使背景图片完全填充并自由伸缩 */
+}
+
+
+.twinkling {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    display: block;
+    pointer-events: none;
+}
+
+.twinkling {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url(../img/stars.png) repeat-y;
+    animation: moveTwinkling 100s linear infinite;
+    z-index: 1;
+}
+
+@keyframes moveTwinkling {
+    0% {
+        background-position: 0 100%;
+    }
+    100% {
+        background-position: 0 0;
+    }
+}
+
+
+.container {
+    text-align: center;
+    background-color: #C0C0C0 ;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    width: 800px;
+    height: 530px;
+    margin: 0 auto;
+    z-index: 0;
+}
+
+input[type="file"] {
+    display: none; /* Hide the default file input */
+}
+
+.custom-file-upload {
+    text-transform: uppercase;
+    font-weight: bold;
+    Letter-spacing: 5px;
+    height: 50px;
+    width: 200px;
+    line-height: 47px;
+    text-align: center; /* 设置文字水平居中 */
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer; /* 设置鼠标悬停时的指针 */
+    transition: background-color 0.3s; /* 添加背景颜色变化的过渡效果 */
+}
+
+.custom-file-upload:hover {
+    background-color: #0056b3; /* 鼠标悬停时改变背景颜色 */
+}
+
+/* 按钮基本样式 */
+.convert-button {
+    display: line-block;
+    Letter-spacing: 5px;
+    text-transform: uppercase;
+    height: 50px; /* 设置按钮高度，与文件输入框相同 */
+    font-size: 16px; /* 设置按钮字体大小 */
+    font-weight: bold;
+    padding: 11px 14px; /* 设置内边距 */
+    border: none; /* 去除默认边框 */
+    border-radius: 8px; /* 设置圆角 */
+    background-color: #007bff; /* 设置按钮背景颜色 */
+    color: white; /* 设置按钮文字颜色 */
+    cursor: pointer; /* 设置鼠标悬停时的指针 */
+    transition: background-color 0.3s; /* 添加背景颜色变化的过渡效果 */
+}
+
+.convert-button::before {
+  content: '';
+  position: absolute;
+  top: 80%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: grey;
+}
+
+.convert-button {
+    display: block;
+    margin: 10px auto;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    height: 50px;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 11px 14px;
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    background-color: #ae24dc;
+    color: rgb(243, 234, 234);
+}
+
+.convert-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(119, 171, 91, 0.5);
+}
+
+.convert-button.disabled:focus {
+    box-shadow: 0 0 0 3px rgba(200, 220, 190, 0.5);
+}
+
+#convert-button:hover {
+    background-color: rgb(35, 83, 22);
+}
+
+.card {
+    padding: 12px;
+    width: 780px;
+    height: 280px;
+    background: linear-gradient(90deg,
+        #ff0000 0%,
+        #ff9a00 10%,
+        #d0de21 20%,
+        #4fdc4a 30%,
+        #3fdad8 40%,
+        #2fc9e2 50%,
+        #1c7fee 60%,
+        #5f15f2 70%,
+        #ba0cf8 80%,
+        #fb07d9 90%,
+        #ff0000 100%);
+    border-radius: 10px;
+    background-size: 200% 200%;
+    animation: anim 2s linear infinite;
+    margin-top: 20px; /* 调整为所需的值 */
+    z-index: 1;
+}
+
+@keyframes anim {
+    100% {
+        background-position-x: -200%;
+    }
+}
+
+
+/* 图像画布的样式 */
+#imageCanvas {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border: 1px solid rgb(150, 111, 51); /* 浅棕色边框 */
+    border-radius: 12px; /* 圆角 */
+}
+
+
+.card__body
+{
+    width: 780px;
+    height: 280px;
+    background-color: #190033;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.tutorial-button, .reset-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+
+.tutorial-button {
+    background-color: #ae24dc;
+    color: rgb(243, 234, 234);
+}
+
+.reset-button {
+    background-color: #f44336;
+    color: white;
+    margin-top: 20px;
+}
+
+.convert-button:hover, .tutorial-button:hover, .reset-button:hover {
+    opacity: 0.8;
+}
+
+.drawer {
+    position: fixed;
+    bottom: -100%;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    transition: bottom 0.5s ease-out;
+    z-index: 1000;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+.drawer-content {
+    max-height: 40vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 5px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.parameters {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.parameter-section {
+    flex-basis: 48%;
+    overflow: visible;
+}
+
+.parameter {
+    margin-bottom: 15px;
+}
+
+.parameter label {
+    white-space: nowrap; /* 确保标签文本不换行 */
+}
+
+.parameter input[type="range"] {
+    width: 100%;
+}
+
+.parameter input[type="checkbox"] {
+    transform: scale(1.5);
+    margin-left: 50px;
+}
+
+.parameter select {
+    width: 100%;
+    padding: 5px;
+    border-radius: 3px;
+    border: 1px solid #ddd;
+}
+
+.action-buttons {
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+}
+
+.action-buttons:hover {
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+}
+
+@media (max-width: 768px) {
+    .parameter-section {
+        flex-basis: 100%;
+    }
+}
+
+.vertical-divider {
+    width: 2px;
+    background-color: #ddd;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    height: calc(80.5%);
+}
+
+/* 参数项悬浮时的动画 */
+.parameter {
+    transition: font-weight 0.3s ease, transform 0.3s ease;
+}
+
+.parameter.hovered {
+    transform: scale(1.01);
+}
+
+/* 工具提示框样式 */
+/* 工具提示框样式（气泡形状） */
+.tooltip {
+    position: absolute;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 15px; /* 增加内边距使其更像气泡 */
+    border-radius: 15px; /* 圆角增加为气泡形状 */
+    font-size: 14px; /* 增大字体，使其更易读 */
+    line-height: 1.5; /* 增加行高，提高可读性 */
+    z-index: 1000;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    transform: translateY(-10px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 添加阴影效果，增强立体感 */
+}
+
+/* 工具提示框可见状态 */
+.tooltip.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 添加小三角形，使其看起来更像气泡 */
+.tooltip::after {
+    content: '';
+    position: absolute;
+    bottom: -10px; /* 调整三角形的位置，使其在提示框下方 */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #333; /* 三角形颜色与提示框背景一致 */
+}
+
